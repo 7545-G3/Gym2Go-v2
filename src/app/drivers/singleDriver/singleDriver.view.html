@@ -1,0 +1,243 @@
+<div class="container driver-create">
+  <div class="row">
+    <div class="col-12">
+      <div class="panel panel-login">
+        <div class="panel-heading">
+          <div class="row row-flex">
+            <div class="col">
+              <a>{{vm.viewOptions().title}}</a>
+            </div>
+          </div>
+          <hr>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-lg-12">
+              <div>
+                <form name="new_driver" id="newdriver-form" ng-submit="new_driver.$valid && vm.submitDriver()" role="form"
+                      style="display: block;" novalidate>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-lg-6 column">
+                      <label for="first_name">Nombre</label>
+                      <input type="text" name="first_name" class="form-control" id="first_name" ng-model="vm.new_driver.first_name"
+                             ng-pattern="/^[a-zA-Z\sñÑ]*$/" required>
+                      <div ng-messages="new_driver.first_name.$error"
+                           ng-show="new_driver.first_name.$touched && new_driver.first_name.$error"
+                           role="alert"
+                           class="form-group ng-messages fs-15">
+                        <div ng-message="required"><strong>Ingrese un nombre.</strong></div>
+                        <div ng-message="pattern"><strong>El nombre solo puede tener letras.</strong></div>
+                      </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-lg-6 column">
+                      <label for="last_name">Apellido</label>
+                      <input type="text" name="last_name" class="form-control" id="last_name" ng-model="vm.new_driver.last_name"
+                             ng-pattern="/^[a-zA-Z\sñÑ]*$/">
+                      <div ng-messages="new_driver.last_name.$error"
+                           ng-show="new_driver.last_name.$touched && new_driver.last_name.$error"
+                           role="alert"
+                           class="form-group ng-messages fs-15">
+                        <div ng-message="pattern"><strong>El apellido solo puede tener letras.</strong></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-lg-6 column">
+                      <label for="phone">Telefono</label>
+                      <input type="number" name="phone" class="form-control" id="phone" ng-model="vm.new_driver.phone"
+                             ng-pattern="/^[0-9]*$/"
+                             ng-minlength="8"
+                             ng-maxlength="10" required>
+                      <div ng-messages="new_driver.phone.$error"
+                           ng-show="new_driver.phone.$touched && new_driver.phone.$error"
+                           role="alert"
+                           class="form-group ng-messages fs-15">
+                        <div ng-message="required"><strong>Ingrese un numero de telefono.</strong></div>
+                        <div ng-message="pattern"><strong>El numero de telefono solo puede tener numeros.</strong></div>
+                        <div ng-message="minlength"><strong>El numero de telefono es demasiado corto.</strong></div>
+                        <div ng-message="maxlength"><strong>El numero de telefono es demasiado largo.</strong></div>
+                      </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-lg-6 column">
+                      <label for="dni">DNI</label>
+                      <input type="number" name="dni" class="form-control" id="dni" ng-model="vm.new_driver.dni"
+                             ng-pattern="/^[0-9]*$/"
+                             ng-minlength="6"
+                             ng-maxlength="9" required>
+                      <p ng-show="vm.error == 'DNI_EXISTS'" class="ng-messages fs-15">
+                        <strong>Ya existe un chofer con ese DNI.</strong>
+                      </p>
+                      <div ng-messages="new_driver.dni.$error"
+                           ng-show="new_driver.dni.$touched && new_driver.dni.$error"
+                           role="alert"
+                           class="form-group ng-messages fs-15">
+                        <div ng-message="required"><strong>Ingrese un DNI.</strong></div>
+                        <div ng-message="pattern"><strong>El DNI solo puede tener numeros.</strong></div>
+                        <div ng-message="minlength"><strong>El DNI es demasiado corto.</strong></div>
+                        <div ng-message="maxlength"><strong>El DNI es demasiado largo.</strong></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-lg-4 column">
+                      <label>Fecha de inicio en el rubro</label>
+                      <datepicker date-format="MM/yyyy" date-min-limit="01/01/1997" datepicker-class="custom-datepicker">
+                        <input ng-model="vm.new_driver.start_working_date" type="text"
+                               class="custom-datepicker" readonly/>
+                      </datepicker>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-lg-4 column">
+                      <label for="worked_companies">Cantidad de tarjetas</label>
+                      <input type="number" name="worked_companies" class="form-control bigger-input" id="worked_companies" ng-model="vm.new_driver.worked_companies"
+                             min="0" max="50">
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-lg-4 column">
+                      <label for="layoffs">Cantidad de despidos</label>
+                      <input type="number" name="layoffs" class="form-control bigger-input" id="layoffs" ng-model="vm.new_driver.layoffs"
+                             min="0" max="50">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-4 column">
+                      <label>Fecha de contacto</label>
+                      <datepicker date-format="MM/dd/yyyy" date-min-limit="01/01/2016" datepicker-class="custom-datepicker">
+                        <input name="contact_date" id="contact_date" ng-model="vm.new_driver.contact_date" type="text"
+                               class="custom-datepicker" readonly required/>
+                      </datepicker>
+                      <div ng-messages="new_driver.contact_date.$error"
+                           ng-show="new_driver.contact_date.$touched && new_driver.contact_date.$error"
+                           role="alert"
+                           class="form-group ng-messages fs-15">
+                        <div ng-message="required"><strong>Ingrese una fecha de contacto.</strong></div>
+                      </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-8 column">
+                      <label for="observations">Observaciones</label>
+                      <textarea name="observations" class="form-control observations" id="observations"
+                                ng-model="vm.new_driver.observations"></textarea>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-lg-6 col-lg-offset-3 column">
+                      <label for="state_id">Estado del chofer</label>
+                      <select class="form-control" ng-options="state.id as state.code for state in vm.driverStates"
+                              ng-model="vm.new_driver.state_id" name="state_id" id="state_id" required>
+                      </select>
+                      <div ng-messages="new_driver.state_id.$error"
+                           ng-show="new_driver.state_id.$touched && new_driver.state_id.$error"
+                           role="alert"
+                           class="form-group ng-messages fs-15">
+                        <div ng-message="required"><strong>Ingrese un estado para el chofer.</strong></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div ng-show="vm.driverStates != null && vm.new_driver.state_id == vm.getEmployeeStateId()">
+                    <div class="row">
+                      <div class="col-xs-12 col-sm-1 column">
+                        <label>Legajo</label>
+                        <h4 align="left">{{vm.new_driver.file_number}}</h4>
+                      </div>
+                      <div class="col-xs-12 col-sm-5 column">
+                        <label>Fecha de alta</label>
+                        <datepicker date-format="MM/dd/yyyy" date-min-limit="01/01/2013" datepicker-class="custom-datepicker">
+                          <input name="up_date" id="up_date" ng-model="vm.new_driver.up_date" type="text"
+                                 class="custom-datepicker" readonly/>
+                        </datepicker>
+                      </div>
+                      <div class="col-xs-12 col-sm-5 column">
+                        <label>Fecha de nacimiento</label>
+                        <datepicker date-format="MM/dd/yyyy" date-min-limit="01/01/1940" datepicker-class="custom-datepicker">
+                          <input name="date_of_birth" id="date_of_birth" ng-model="vm.new_driver.date_of_birth" type="text"
+                                 class="custom-datepicker" readonly/>
+                        </datepicker>
+                      </div>
+                      <div class="col-xs-12 col-sm-1 column">
+                        <label>Edad</label>
+                        <h4 align="left">{{vm.driverAge()}}</h4>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-12 col-sm-4 column">
+                        <label>Fecha de baja</label>
+                        <datepicker date-format="MM/dd/yyyy" date-min-limit="01/01/2016" datepicker-class="custom-datepicker">
+                          <input name="down_date" id="down_date" ng-model="vm.new_driver.down_date" type="text"
+                                 class="custom-datepicker" readonly/>
+                        </datepicker>
+                      </div>
+                      <div class="col-xs-12 col-sm-4 column">
+                        <label>Fecha de vencimiento SACTA</label>
+                        <datepicker date-format="MM/dd/yyyy" date-min-limit="01/01/2016" datepicker-class="custom-datepicker">
+                          <input name="sacta_expire" id="sacta_expire" ng-model="vm.new_driver.sacta_expire" type="text"
+                                 class="custom-datepicker" readonly/>
+                        </datepicker>
+                      </div>
+                      <div class="col-xs-12 col-sm-4 column">
+                        <label>Fecha de vencimiento Registro</label>
+                        <datepicker date-format="MM/dd/yyyy" date-min-limit="01/01/2016" datepicker-class="custom-datepicker">
+                          <input name="register_expire" id="register_expire" ng-model="vm.new_driver.register_expire" type="text"
+                                 class="custom-datepicker" readonly/>
+                        </datepicker>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-12 col-sm-4 column">
+                        <label for="medical_coverage">Obra social</label>
+                        <input type="text" name="medical_coverage" class="form-control" id="medical_coverage"
+                               ng-model="vm.new_driver.medical_coverage">
+                      </div>
+                      <div class="col-xs-12 col-sm-4 column">
+                        <label for="alternate_phone_number">Telefono alternativo</label>
+                        <input type="number" name="alternate_phone_number" class="form-control" id="alternate_phone_number"
+                               ng-model="vm.new_driver.alternate_phone_number">
+                      </div>
+                      <div class="col-xs-12 col-sm-4 column">
+                        <label for="marital_status">Estado civil</label>
+                        <select class="form-control" name="marital_status" id="marital_status"
+                                ng-model="vm.new_driver.marital_status">
+                          <option value="Soltero">Soltero</option>
+                          <option value="Casado">Casado</option>
+                          <option value="Divorciado">Divorciado</option>
+                          <option value="Viudo">Viudo</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-12 col-sm-5 column">
+                        <label for="sacta_address">Domicilio SACTA</label>
+                        <input type="text" name="sacta_address" class="form-control" id="sacta_address"
+                               ng-model="vm.new_driver.sacta_address">
+                      </div>
+                      <div class="col-xs-12 col-sm-5 column">
+                        <label for="real_address">Domicilio real</label>
+                        <input type="text" name="real_address" class="form-control" id="real_address"
+                               ng-model="vm.new_driver.real_address">
+                      </div>
+                      <div class="col-xs-12 col-sm-2 column">
+                        <label for="telegram_sent">Mando telegrama</label>
+                        <input type="checkbox" name="telegram_sent" class="form-control" id="telegram_sent"
+                               ng-model="vm.new_driver.telegram_sent">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-6 col-sm-offset-3">
+                        <input type="submit"
+                               name="new-driver-submit"
+                               id="new-driver-submit"
+                               class="form-control btn btn-login"
+                               value="{{vm.viewOptions().button}}"
+                               ng-disabled="new_driver.$invalid">
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

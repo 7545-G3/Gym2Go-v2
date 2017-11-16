@@ -1,0 +1,72 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="panel panel-login">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+              <a id="register-form-link">Recuperar contraseña</a>
+            </div>
+          </div>
+          <hr>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-lg-12">
+              <div>
+                <form name="reset" class="reset-form" ng-submit="reset.$valid && vm.reset()" role="form" style="display: block;" novalidate>
+                  <div class="form-group">
+                    <input type="text"
+                           name="code" id="code"
+                           tabindex="4"
+                           class="form-control"
+                           placeholder="Codigo"
+                           ng-model="vm.resetParams.code" required>
+                    <p ng-show="vm.error == 'INVALID_CODE'" class="ng-messages fs-15">
+                      <strong>El codigo no es valido.</strong>
+                    </p>
+                    <div ng-messages="reset.code.$error"
+                         ng-show="reset.code.$touched && reset.code.$error"
+                         role="alert"
+                         class="form-group ng-messages fs-15">
+                      <div ng-message="required"><strong>Ingrese el codigo enviado.</strong></div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <input type="password"
+                           name="password" id="password"
+                           tabindex="4"
+                           class="form-control"
+                           placeholder="Contraseña"
+                           ng-model="vm.resetParams.password"
+                           ng-minlength="8" required>
+                    <div ng-messages="reset.password.$error"
+                         ng-show="reset.password.$touched && reset.password.$error"
+                         role="alert"
+                         class="form-group ng-messages fs-15">
+                      <div ng-message="required"><strong>Ingrese una contraseña.</strong></div>
+                      <div ng-message="minlength"><strong>La contraseña debe ser mayor a 8 caracteres</strong></div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-6 col-sm-offset-3">
+                        <input type="submit"
+                               name="register-submit"
+                               id="register-submit"
+                               tabindex="5"
+                               class="form-control btn btn-login"
+                               value="Restablecer contraseña"
+                               ng-disabled="reset.$invalid">
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

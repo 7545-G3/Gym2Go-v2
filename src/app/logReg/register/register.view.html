@@ -1,0 +1,117 @@
+﻿<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="panel panel-login">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+              <a id="register-form-link">Registrar</a>
+            </div>
+          </div>
+          <hr>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-lg-12">
+              <div>
+                <form name="signup" class="register-form" ng-submit="signup.$valid && vm.register()" role="form" style="display: block;" novalidate>
+                  <div class="form-group">
+                    <input type="text"
+                           name="firstName"
+                           id="firstName"
+                           tabindex="1"
+                           class="form-control"
+                           placeholder="Nombre"
+                           ng-model="vm.registerCredentials.first_name" required>
+                    <div ng-messages="signup.firstName.$error"
+                         ng-show="signup.firstName.$touched && signup.firstName.$error"
+                         role="alert"
+                         class="form-group ng-messages fs-15">
+                      <div ng-message="required"><strong>Ingrese un nombre.</strong></div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <input type="text"
+                           name="lastName"
+                           id="lastName"
+                           tabindex="2"
+                           class="form-control"
+                           placeholder="Apellido"
+                           ng-model="vm.registerCredentials.last_name" required>
+                    <div ng-messages="signup.lastName.$error"
+                         ng-show="signup.lastName.$touched && signup.lastName.$error"
+                         role="alert"
+                         class="form-group ng-messages fs-15">
+                      <div ng-message="required"><strong>Ingrese un apellido.</strong></div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" name="username" id="username" tabindex="3" class="form-control" placeholder="Usuario" ng-model="vm.registerCredentials.username" required>
+                    <p ng-show="vm.error == 'USERNAME_EXISTS'">
+                      <strong>El usuario ya esta en uso.</strong>
+                    </p>
+                    <div ng-messages="signup.username.$error"
+                         ng-show="signup.username.$touched && signup.username.$error"
+                         role="alert"
+                         class="form-group ng-messages fs-15">
+                      <div ng-message="required"><strong>Ingrese un usuario.</strong></div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <input type="password"
+                           name="password" id="password"
+                           tabindex="4"
+                           class="form-control"
+                           placeholder="Contraseña"
+                           ng-model="vm.registerCredentials.password"
+                           required>
+                    <div ng-messages="signup.password.$error"
+                         ng-show="signup.password.$touched && signup.password.$error"
+                         role="alert"
+                         class="form-group ng-messages fs-15">
+                      <div ng-message="required"><strong>Ingrese una contraseña.</strong></div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <input type="email"
+                           name="email"
+                           id="email"
+                           tabindex="4"
+                           class="form-control"
+                           placeholder="Email"
+                           ng-model="vm.registerCredentials.email"
+                           ng-pattern = '/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i'
+                           required>
+                    <p ng-show="vm.error == 'EMAIL_EXISTS'">
+                      <strong>La direccion de email ya esta en uso.</strong>
+                    </p>
+                    <div ng-messages="signup.email.$error"
+                         ng-show="signup.email.$touched && signup.email.$error"
+                         role="alert"
+                         class="form-group ng-messages fs-15">
+                      <div ng-message="required"><strong>Ingrese una direccion de email.</strong></div>
+                      <div ng-message="pattern"><strong>La direccion de email ingresada no tiene un formato valido.</strong></div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-6 col-sm-offset-3">
+                        <input type="submit"
+                               name="register-submit"
+                               id="register-submit"
+                               tabindex="5"
+                               class="form-control btn btn-login"
+                               value="Registrar"
+                               ng-disabled="signup.$invalid">
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
