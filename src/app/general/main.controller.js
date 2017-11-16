@@ -5,16 +5,16 @@
     .module('taxiManagement')
     .controller('MainController', MainController);
 
-  function MainController($state, User, $location, $localStorage, $scope) {
+  function MainController($state, $location, $localStorage, $scope) {
     var vm = this;
 
-    if (!User.isLogged()) {
+    /*if (!User.isLogged()) {
       $state.transitionTo('login')
     } else {
       if ($location.path() === '/') {
         $state.transitionTo('main.drivers')
       }
-    }
+    }*/
 
     $scope.$storage = $localStorage;
 
@@ -22,7 +22,6 @@
     vm.goToNotifications = goToNotifications;
 
     function logout() {
-      User.logout();
       $state.go('login');
     }
 
