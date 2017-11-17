@@ -14,7 +14,7 @@
     vm.logout = logout;
 
     function login() {
-      $state.go('main.drivers')
+      $state.go('main.gymMap')
     }
     function logout() {
       $state.go('login')

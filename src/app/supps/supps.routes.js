@@ -9,13 +9,12 @@
     $stateProvider
 
       .state({
-        name: 'main.notifications',
-        url: 'notifications',
-        templateUrl: 'app/notifications/notifications.view.html',
-        controller: 'NotificationsController',
+        name: 'main.supps',
+        url: 'supps',
+        templateUrl: 'app/supps/supps.view.html',
+        controller: 'SuppsController',
         controllerAs: 'vm'
       })
-
 
     $urlRouterProvider.otherwise('login')
   }

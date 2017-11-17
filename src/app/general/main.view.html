@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" ui-sref="main.drivers">
+      <a class="navbar-brand" ui-sref="main.map">
         Masor
       </a>
     </div>
@@ -16,24 +16,11 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" role="button"
-             aria-haspopup="true" aria-expanded="false">Choferes <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a ui-sref="main.drivers">Ver todos</a></li>
-            <li><a ui-sref="main.singleDriver({id: 'new'})">Nuevo chofer</a ></li>
-            <li role="separator" class="divider"></li>
-            <li><a ui-sref="main.driverStates">Editar estados...</a></li>
-          </ul>
-        </li>
-        <li><a >Ingresos</a></li>
-        <li><a >Autos</a></li>
+        <li><a ui-sref="main.gymMap">Gimnasios</a></li>
+        <li><a ui-sref="main.supps">Suplementos</a></li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li><a ng-click="mainController.goToNotifications()" class="btn btn-navbar">Notificaciones
-          <span ng-if="$storage.count > 0" class="badge badge-pill badge-secondary">{{$storage.count}}</span></a>
-        </li>
         <li><a ng-click="mainController.logout()" class="btn btn-navbar">Cerrar sesión</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->

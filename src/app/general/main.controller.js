@@ -8,25 +8,12 @@
   function MainController($state, $location, $localStorage, $scope) {
     var vm = this;
 
-    /*if (!User.isLogged()) {
-      $state.transitionTo('login')
-    } else {
-      if ($location.path() === '/') {
-        $state.transitionTo('main.drivers')
-      }
-    }*/
-
     $scope.$storage = $localStorage;
 
     vm.logout = logout;
-    vm.goToNotifications = goToNotifications;
 
     function logout() {
       $state.go('login');
-    }
-
-    function goToNotifications() {
-      $state.go('main.notifications');
     }
 
   }
